@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/revise.css">
+<title>雲澄租車系統</title>
+</head>
+
+<body>
+
+	<form method="post" action="/CloudSerenityHotel/rent/car-model/insert">
+		<h1 class="page-title  move-right">車型管理</h1>
+		<table>
+			<tbody>
+				<!-- 車型名稱、品牌、油耗量等欄位 -->
+				<tr>
+					<td><label for="model">車型名稱</label></td>
+					<td><input type="text" name="carModel" id="carModel"
+						placeholder="車型名稱"></td>
+
+					<td><label for="brand">品牌</label></td>
+					<td><input type="text" name="brand" id="brand"
+						placeholder="輸入品牌"></td>
+
+					<td><label for="fuelEfficiency">油耗量</label></td>
+					<td><input type="text" name="fuelEfficiency"
+						id="fuelEfficiency" placeholder="油耗量"></td>
+				</tr>
+
+				<!-- 車輛尺寸、車輛類型、乘車人數等欄位 -->
+				<tr>
+					<td><label for="carSize">車輛尺寸</label></td>
+					<td><select name="carSize" id="carSize">
+							<option value="motorcycle">機車</option>
+							<option value="small">小型車</option>
+							<option value="large">大型車</option>
+					</select></td>
+
+					<td><label for="carType">車輛類型</label></td>
+					<td><select name="carType" id="carType">
+							<option value="sedan">轎車</option>
+							<option value="suv">休旅車</option>
+							<option value="hatchback">掀背車</option>
+							<option value="motorcycle">機車</option>
+					</select></td>
+
+					<td><label for="seatingCapacity">乘車人數</label></td>
+					<td><input type="text" name="seatingCapacity"
+						id="seatingCapacity" placeholder="乘車人數"></td>
+				</tr>
+				<tr>
+				<tr>
+					<td><label for="description">車輛描述</label></td>
+   					 <td><textarea name="description" id="description"
+						placeholder="型號介紹" rows="4" cols="50"></textarea></td>
+				</tr>
+				
+				<!-- 上傳圖片欄位 -->
+				
+			</tbody>
+		</table>
+
+		<button type="submit">提交表單</button>
+
+	</form>
+</body>

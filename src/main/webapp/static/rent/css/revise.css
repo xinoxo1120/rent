@@ -1,0 +1,87 @@
+.page-title {
+    transform: translateY(-30vh);
+    text-align: center;
+    /* 使標題置中 */
+    margin-top: 40px;
+    /* 標題與頁面頂部有適當間距 */
+    margin-bottom: 30px;
+    /* 標題與表格之間有適當間距 */
+    font-size: 24px;
+    /* 字體大小 */
+    font-weight: bold;
+    /* 使字體加粗 */
+    color: #333;
+    /* 顏色可以選擇適合的，這裡選擇暗色 */
+}
+
+.move-right {
+    margin-top: 13vh;
+}
+
+
+/* 設定頁面的背景和表單容器的樣式 */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.form-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 表格樣式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+/* 表頭樣式 */
+th {
+    text-align: left;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+/* 表格資料欄位樣式 */
+td {
+    text-align: left;
+    padding: 10px;
+}
+
+/* 輸入框樣式 */
+input,
+select {
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* 提交按鈕樣式 */
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
