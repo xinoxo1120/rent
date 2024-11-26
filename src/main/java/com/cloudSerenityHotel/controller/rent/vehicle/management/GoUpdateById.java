@@ -33,7 +33,7 @@ public class GoUpdateById extends HttpServlet {
 		request.setAttribute("availableVehicles", car.getAvailableVehicles());
 		request.setAttribute("carType", car.getCarType());
 		request.setAttribute("carSize", car.getCarSize());
-		request.getRequestDispatcher("/static/rent/jsp/goUpdateById.jsp").forward(request, response);
+		request.getRequestDispatcher("/static/rent/jsp/UpdateCarModel.jsp").forward(request, response);
 
 	}
 

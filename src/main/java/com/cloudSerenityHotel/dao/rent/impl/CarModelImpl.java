@@ -1,8 +1,11 @@
 package com.cloudSerenityHotel.dao.rent.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
@@ -85,18 +88,16 @@ public class CarModelImpl extends BaseDao implements CarModelDao {
 	static {
 		try {
 			Context context = new InitialContext();
-			ds =  (DataSource) context.lookup("java:/comp/env/jdbc/csh");
+			ds = (DataSource) context.lookup("java:/comp/env/jdbc/csh");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-		
-
 	@Override
 	public List<CarModelBean> getAllCarModel() {
-		List <CarModelBean> carmodel = null;
+		List<CarModelBean> carmodel = null;
 		Connection conn = null;
 		try {
 			conn = ds.getConnection();
@@ -108,20 +109,13 @@ public class CarModelImpl extends BaseDao implements CarModelDao {
 		return carmodel;
 	}
 
-	//新增車輛型號
+	// 新增車輛型號
 	@Override
 	public int insertCarModel(CarModelBean carModel) {
-		try(Connection conn = ds.getConnection()) {
-			return update(conn, INSERT_SQL, 
-							carModel.getCarModel(),
-							carModel.getDescription(),
-							carModel.getBrand(),
-							carModel.getFuelEfficiency(),
-							carModel.getSeatingCapacity(),
-							carModel.getCarType(),
-							carModel.getCarSize(),
-							carModel.getCreatedAt(),
-							carModel.getUpdatedAt());
+		try (Connection conn = ds.getConnection()) {
+			return update(conn, INSERT_SQL, carModel.getCarModel(), carModel.getDescription(), carModel.getBrand(),
+					carModel.getFuelEfficiency(), carModel.getSeatingCapacity(), carModel.getCarType(),
+					carModel.getCarSize(), carModel.getCreatedAt(), carModel.getUpdatedAt());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,11 +123,9 @@ public class CarModelImpl extends BaseDao implements CarModelDao {
 		return 0;
 	}
 
-	
-	
 	@Override
 	public int updateModel(String description, String carSize, Timestamp timestamp, int carId) {
-		try(Connection conn = ds.getConnection()) {
+		try (Connection conn = ds.getConnection()) {
 			return update(conn, UPDATE_SQL, description, carSize, timestamp, carId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -142,10 +134,9 @@ public class CarModelImpl extends BaseDao implements CarModelDao {
 		return 0;
 	}
 
-	
 	@Override
 	public int deleteModelById(int carId) {
-		try(Connection conn = ds.getConnection()) {
+		try (Connection conn = ds.getConnection()) {
 			return update(conn, DELETE_SQL, carId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -153,7 +144,6 @@ public class CarModelImpl extends BaseDao implements CarModelDao {
 		}
 		return 0;
 	}
-
 
 	@Override
 	public CarModelBean CarselectModelOneById(int carId) {
@@ -166,5 +156,48 @@ public class CarModelImpl extends BaseDao implements CarModelDao {
 		return null;
 	}
 
+	public List<CarModelBean> selectBrand(String brand) {
+
+		List<CarModelBean> cars = null;
+		ResultSet rs = null;
+		String sql = """
+				SELECT
+					car_id as carId,
+					car_model as carModel,
+				brand as brand
+				FROM carmodel
+				""";
+
+		if (brand != null) {
+			sql += " WHERE brand LIKE ?";
+		}
+		try (Connection conn = ds.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql);) {
+
+			stmt.setString(1, "%" + brand + "%");
+			rs = stmt.executeQuery();
+
+			cars = new ArrayList<>();
+			CarModelBean carmodel = null;
+			while (rs.next()) {
+				carmodel = new CarModelBean();
+				carmodel.setCarId(rs.getInt("carId"));
+				carmodel.setCarModel(rs.getString("carModel"));
+				carmodel.setBrand(rs.getString("brand"));
+				cars.add(carmodel);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return cars;
+	}
 
 }

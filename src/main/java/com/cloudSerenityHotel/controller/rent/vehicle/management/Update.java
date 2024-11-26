@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import com.cloudSerenityHotel.bean.rent.CarModelBean;
 import com.cloudSerenityHotel.dao.rent.impl.CarModelImpl;
@@ -33,10 +34,29 @@ public class Update extends HttpServlet {
 
 		model.updateModel(description, carSize, timestamp, carId);
 
-		CarModelBean goCarOne = model.CarselectModelOneById(carId);
+		CarModelBean car = model.CarselectModelOneById(carId);
 
-		request.setAttribute("goCarOne", goCarOne);
-		request.getRequestDispatcher("/static/rent/jsp/CarModelOne.jsp").forward(request, response);
+		request.setAttribute("carId", car.getCarId());
+		request.setAttribute("carModel", car.getCarModel());
+		request.setAttribute("description", car.getDescription());
+		request.setAttribute("brand", car.getBrand());
+		request.setAttribute("fuelEfficiency", car.getFuelEfficiency());
+		request.setAttribute("seatingCapacity", car.getSeatingCapacity());
+		request.setAttribute("totalVehicles", car.getTotalVehicles());
+		request.setAttribute("availableVehicles", car.getAvailableVehicles());
+		request.setAttribute("carType", car.getCarType());
+		request.setAttribute("carSize", car.getCarSize());
+
+		Timestamp createdTimestamp = car.getCreatedAt();
+		Timestamp updatedTimestamp = car.getUpdatedAt();
+		String createdAt = DateTimeFormatter.ofPattern(CarModelOne.DATE_TIME_FORMATTER)
+				.format(createdTimestamp.toLocalDateTime());
+		String updatedAt = DateTimeFormatter.ofPattern(CarModelOne.DATE_TIME_FORMATTER)
+				.format(updatedTimestamp.toLocalDateTime());
+		request.setAttribute("createdAt", createdAt);
+		request.setAttribute("updatedAt", updatedAt);
+
+		request.getRequestDispatcher("/static/rent/jsp/getCarOne.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

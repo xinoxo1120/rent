@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 import com.cloudSerenityHotel.bean.rent.CarModelBean;
 import com.cloudSerenityHotel.controller.rent.utils.BaseValidationUtil;
@@ -56,8 +57,12 @@ public class InsertCarModel extends HttpServlet {
 		car.setUpdatedAt(timestamp);
 
 		model.insertCarModel(car);
-		request.setAttribute("insertCar", car);
-		request.getRequestDispatcher("/static/rent/jsp/insertCarModel.jsp").forward(request, response);
+
+		List<CarModelBean> cars = model.getAllCarModel();
+
+		request.setAttribute("cars", cars);
+
+		request.getRequestDispatcher("/static/rent/jsp/getCarModelAll.jsp").forward(request, response);
 	}
 
 }

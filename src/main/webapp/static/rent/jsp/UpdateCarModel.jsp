@@ -15,11 +15,12 @@
 <link rel="stylesheet" type="text/css"
 	href="/CloudSerenityHotel/static/rent/css/insertCarModel.css">
 <title>雲澄飯店租車系統</title>
-</head>
-<body>
-	<form action="/CloudSerenityHotel/rent/car-model/delete" method="post"
-		id="DeleteCarModel-form">
 
+</head>
+
+<body>
+	<form action="/CloudSerenityHotel/rent/car-model/update" method="post"
+		id="DeleteCarModel-form">
 		<nav id="sidebar">
 
 			<img src="/CloudSerenityHotel/static/rent/cloud.png" alt="Logo"
@@ -38,69 +39,69 @@
 
 		<article>
 			<div class="form-container">
-				<h2>刪除車型</h2>
+				<h2>車型修改資料</h2>
 
 				<!-- 車型名稱 -->
 				<div class="form-group">
-					<label for="carModel">車型編號:</label> <input type="text" disabled
+					<label for="carModel">車型名稱:</label> <input type="text" disabled
 						name="carId" value="${carId}"> <input type="hidden"
 						name="carId" value="${carId}" />
 
 				</div>
 
-				<div class="form-group">
-					<label for="carModel">車型名稱:</label> <input type="text" disabled
-						name="carId" value="${carModel}">
-				</div>
-
 				<!-- 品牌 -->
 				<div class="form-group">
 					<label for="brand">品牌:</label> <input type="text" disabled
-						name="brand" value="${brand}">
+						name="brand" value="${brand}"> <input type="hidden"
+						name="brand" value="${brand}" />
 				</div>
 
 				<!-- 油耗量 (數字輸入框) -->
 				<div class="form-group">
 					<label for="fuelEfficiency">油耗量 (單位：km/L):</label> <input
 						type="text" disabled name="fuelEfficiency"
-						value="${fuelEfficiency}">
+						value="${fuelEfficiency}"> <input type="hidden"
+						name="fuelEfficiency" value="${fuelEfficiency}" />
 				</div>
 
 				<!-- 車輛類型 -->
 				<div class="form-group">
 					<label for="carType">車輛類型:</label> <input type="text" disabled
+						name="carType" value="${carType}"> <input type="hidden"
 						name="carType" value="${carType}">
 				</div>
 
+				<!-- 車輛尺寸 -->
 				<div class="form-group">
-					<label for="carSize">車輛尺寸:</label> <input type="text" disabled
+					<label for="carSize">車輛尺寸:</label> <input type="text"
 						name="carSize" value="${carSize}">
-
 				</div>
 
 				<!-- 乘車人數 -->
 				<div class="form-group">
 					<label for="seatingCapacity">乘車人數:</label> <input type="text"
 						disabled name="seatingCapacity" value="${seatingCapacity}">
-
+					<input type="hidden" name="seatingCapacity"
+						value="${seatingCapacity}" />
 				</div>
 
 				<div class="form-group">
 					<label for="totalVehicles">車輛總數:</label> <input type="text"
-						disabled name="totalVehicles" value="${totalVehicles}">
+						disabled name="totalVehicles" value="${totalVehicles}"> <input
+						type="hidden" name="totalVehicles" value="${totalVehicles}" />
 				</div>
 
 				<div class="form-group">
-					<label for="availableVehicles">可用數量:</label> 
-					<input type="text"
+					<label for="availableVehicles">可用數量:</label> <input type="text"
 						disabled name="availableVehicles" value="${availableVehicles}">
-
+					<input type="hidden" name="availableVehicles"
+						value="${availableVehicles}" />
 				</div>
 
 				<!-- 車輛描述 -->
 				<div class="form-group">
-					<label for="description">車輛描述:</label><input type="text"
-						disabled name="description" value="${description}">
+					<label for="description">車輛描述:</label>
+					<textarea name="description" rows="4" cols="50">${description}</textarea>
 				</div>
 
 
@@ -110,4 +111,6 @@
 
 		</article>
 	</form>
+</body>
+
 </html>

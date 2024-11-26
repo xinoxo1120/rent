@@ -26,7 +26,7 @@ public class DeleteCarModel extends HttpServlet {
 		model.deleteModelById(carId);
 		List<CarModelBean> cars = model.getAllCarModel();
 		request.setAttribute("cars", cars);
-		request.getRequestDispatcher("/static/rent/jsp/modelGetAll.jsp").forward(request, response);
+		request.getRequestDispatcher("/static/rent/jsp/getCarModelAll.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

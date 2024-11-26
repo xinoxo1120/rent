@@ -12,15 +12,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/rent/car-model/query-all")
-public class CarModelAll extends HttpServlet {
+@WebServlet("/rent/car-model/select-brand")
+public class SelectBrand extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	CarModelImpl model = new CarModelImpl();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<CarModelBean> cars = model.getAllCarModel();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String brand = request.getParameter("brand");
+		if (brand == null) {
+			brand = "";
+		}
+
+		List<CarModelBean> cars = model.selectBrand(brand);
 
 		request.setAttribute("cars", cars);
 		request.getRequestDispatcher("/static/rent/jsp/getCarModelAll.jsp").forward(request, response);
