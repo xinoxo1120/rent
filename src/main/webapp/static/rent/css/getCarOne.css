@@ -154,40 +154,29 @@ article h3 {
 .image-container {
     width: 580px;
     height: 380px;
-    /* 長方形區塊的高度 */
     background-color: #ededed;
     position: absolute;
-    /* 使用絕對定位 */
     top: 5%;
-    /* 向下移動 10% */
     left: 30%;
-    /* 向右移動 70% */
     display: flex;
-    justify-content: center;
-    /* 水平居中圖片 */
-    align-items: center;
-    /* 垂直居中圖片 */
+    justify-content: center;  /* 水平居中圖片 */
+    align-items: center;     /* 垂直居中圖片 */
     overflow: hidden;
     border: none;
 }
 
 .image-container img {
-    width: auto;
-    height: 100%;
-    /* 讓圖片充滿區塊的高度，保持圖片比例 */
-    object-fit: cover;
-    /* 確保圖片不變形，並填充整個區塊 */
+    width: 100%;  /* 使圖片寬度自動擴展，適應容器寬度 */
+    height: 100%;  /* 使圖片高度自動擴展，適應容器高度 */
+    object-fit: contain;  /* 確保圖片保持比例並完全顯示 */
 }
 
 @media (max-width: 768px) {
     .image-container {
         width: 90%;
         height: 250px;
-        /* 可以根據需要調整 */
         top: 10%;
-        /* 根據螢幕大小調整容器位置 */
         left: 5%;
-        /* 保持左右居中 */
     }
 }
 
@@ -195,6 +184,7 @@ article h3 {
     display: flex;
     justify-content: center;
     /* 確保圖片水平居中 */
+    width: 100% !important;  /* 確保每個項目只顯示一張圖片 */
 }
 
 .article-container {
@@ -283,7 +273,9 @@ article h3 {
 
 /* 按鈕樣式 */
 .edit-btn,
-.delete-btn {
+.delete-btn,
+.image-btn {
+    /* 這裡為新按鈕也套用樣式 */
     font-size: 2.0rem;
     /* 調整按鈕大小 */
     color: #49566f;
@@ -293,15 +285,24 @@ article h3 {
 
 /* 當按鈕 hover 時，顏色改變 */
 .edit-btn:hover,
-.delete-btn:hover {
+.delete-btn:hover,
+.image-btn:hover {
+    /* 新按鈕的 hover 顏色 */
     color: #888e96;
     /* Hover 時的顏色 */
 }
 
+.image-btn {
+    color: #49566f !important;
+    font-size: 2.0rem !important;
+    cursor: pointer !important;
+    transition: color 0.3s ease !important;
+}
+
 .container {
-    position: relative !important;
+    position: relative;
     /* 設置父元素為 relative */
-    height: 500px !important;
+    height: 500px;
     /* 設置一個高度，這樣有空間顯示絕對定位的元素 */
 }
 
@@ -320,7 +321,6 @@ article h3 {
     /* 固定高度 */
     z-index: 10;
 }
-
 .car-description h4 {
     font-size: 24px;
     color: #2c3e50;

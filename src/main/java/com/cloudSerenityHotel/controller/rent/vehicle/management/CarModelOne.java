@@ -3,9 +3,12 @@ package com.cloudSerenityHotel.controller.rent.vehicle.management;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import com.cloudSerenityHotel.bean.rent.CarModelBean;
+import com.cloudSerenityHotel.controller.rent.utils.ImageShow;
 import com.cloudSerenityHotel.dao.rent.impl.CarModelImpl;
+import com.cloudSerenityHotel.dao.rent.impl.ImagesDao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,7 +23,8 @@ public class CarModelOne extends HttpServlet {
 	public static final String DATE_TIME_FORMATTER = "yyyy-MM-dd hh:mm";
 
 	CarModelImpl model = new CarModelImpl();
-
+	ImagesDao imagesDao = new ImagesDao();
+	ImageShow imageShow = new ImageShow();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -43,6 +47,8 @@ public class CarModelOne extends HttpServlet {
 		request.setAttribute("updatedAt", updatedAt);
 		request.setAttribute("carType", goCarOne.getCarType());
 		request.setAttribute("carSize", goCarOne.getCarSize());
+		List<String> images = imageShow.showimageAll(carId);
+		request.setAttribute("images", images);
 		request.getRequestDispatcher("/static/rent/jsp/getCarOne.jsp").forward(request, response);
 
 	}

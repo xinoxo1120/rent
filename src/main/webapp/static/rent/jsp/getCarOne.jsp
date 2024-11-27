@@ -12,6 +12,19 @@
 	integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/assets/owl.carousel.min.css"></link>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/assets/owl.theme.default.min.css"></link>
+<script
+	src='https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.2.4/owl.carousel.min.js"></script>
+
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+	rel="stylesheet">
 
 
 <link rel="stylesheet"
@@ -29,19 +42,25 @@
 
 		<div class="scrollbar">
 			<ul>
-				<li><a href="/CloudSerenityHotel/static/rent/html/home.html"><i class="fa-solid fa-house"></i><span>首頁</span></a></li>
+				<li><a href="/CloudSerenityHotel/static/rent/html/home.html"><i
+						class="fa-solid fa-house"></i><span>首頁</span></a></li>
 				<li><a href="/CloudSerenityHotel/rent/car-model/query-all"><i
 						class="fa-solid fa-car-side"></i><span>車型管理</span></a></li>
 				<li><i class="fa-solid fa-car"></i><span>車輛管理</span></li>
 				<li><i class="fa-solid fa-box-archive"></i><span>訂單紀錄</span></li>
 			</ul>
+
+
 		</div>
 	</nav>
 
 	<article>
 
 		<div class="image-container">
-			<img src="/1-gogoro-2.jpg" alt="描述圖片" class="image">
+				<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+				<c:forEach var="image" items="${images}">
+					<img src="data:image/png;base64,${image}" alt="描述圖片" class="image">
+				</c:forEach>
 		</div>
 		<h3>${carModel}</h3>
 
@@ -51,7 +70,15 @@
 
 		</div>
 
+		<!--		<div class="button-container">
+		<i class="fa-solid fa-image image-btn" onclick="images(${carId})"></i>
+			<i class="fa-solid fa-pen-to-square edit-btn"
+				onclick="updateById(${carId})"></i> <i
+				class="fa-solid fa-trash delete-btn" onclick="deleteById(${carId})"></i>
+		</div>-->
+
 		<div class="button-container">
+			<i class="fa-solid fa-image image-btn" onclick="imagsAll(${carId})"></i>
 			<i class="fa-solid fa-pen-to-square edit-btn"
 				onclick="updateById(${carId})"></i> <i
 				class="fa-solid fa-trash delete-btn" onclick="deleteById(${carId})"></i>
@@ -103,7 +130,21 @@
 			function deleteById(carId) {
 				 window.location.href = "/CloudSerenityHotel/rent/car-model/go-delete-by-id?carId=" + carId;
 			}
+			
+			function imagsAll(carId) {
+				 window.location.href = "/CloudSerenityHotel/rent/car-model/images-all?carId=" + carId;
+			}
+			
+			
 	</script>
+	<script src="../jquery.cycle.all.js" type="text/javascript"></script>
+	<script type="text/javascript">
+			    $(document).ready(function () { 
+			         $('#slideshow').cycle({  
+			             fx: "scrollHorz" 
+			         }); 
+			    });
+			</script>
 
 
 </body>

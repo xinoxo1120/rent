@@ -25,7 +25,8 @@
 
 		<div class="scrollbar">
 			<ul>
-				<li><a href="/CloudSerenityHotel/static/rent/html/home.html"><i class="fa-solid fa-house"></i><span>首頁</span></a></li>
+				<li><a href="/CloudSerenityHotel/static/rent/html/home.html"><i
+						class="fa-solid fa-house"></i><span>首頁</span></a></li>
 				<li><a href="/CloudSerenityHotel/rent/car-model/query-all"><i
 						class="fa-solid fa-car-side"></i><span>車型管理</span></a></li>
 				<li><i class="fa-solid fa-car"></i><span>車輛管理</span></li>
@@ -46,11 +47,14 @@
 		<div class="grid-container">
 
 
-			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 			<c:forEach var="car" items="${cars}">
 				<div class="grid-item-wrapper">
 					<div class="grid-item" onclick="getOneCar('${car.carId}')">
-						<img src="https://via.placeholder.com/200" alt="Image 1">
+
+						<img src="data:image/png;base64,${car.image}" alt="描述圖片"
+							class="image">
+
 						<h3>${car.carModel}</h3>
 						<p>${car.brand}</p>
 					</div>

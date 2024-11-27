@@ -24,4 +24,6 @@ public class CarModelBean {
 	private Timestamp updatedAt; // 更新時間
 	private String carType; // 車輛類型
 	private String carSize; // 車型尺寸
+
+
 }
