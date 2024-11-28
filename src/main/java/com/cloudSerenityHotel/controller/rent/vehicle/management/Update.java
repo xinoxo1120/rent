@@ -5,8 +5,10 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import com.cloudSerenityHotel.bean.rent.CarModelBean;
+import com.cloudSerenityHotel.controller.rent.utils.ImageShow;
 import com.cloudSerenityHotel.dao.rent.impl.CarModelImpl;
 
 import jakarta.servlet.ServletException;
@@ -21,6 +23,7 @@ public class Update extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	CarModelImpl model = new CarModelImpl();
+	ImageShow imageShow = new ImageShow();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -55,6 +58,9 @@ public class Update extends HttpServlet {
 				.format(updatedTimestamp.toLocalDateTime());
 		request.setAttribute("createdAt", createdAt);
 		request.setAttribute("updatedAt", updatedAt);
+
+		List<String> images = imageShow.showimageAll(carId);
+		request.setAttribute("images", images);
 
 		request.getRequestDispatcher("/static/rent/jsp/getCarOne.jsp").forward(request, response);
 	}

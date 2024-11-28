@@ -1,9 +1,12 @@
 package com.cloudSerenityHotel.controller.rent.vehicle.management;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cloudSerenityHotel.bean.rent.CarModelBean;
+import com.cloudSerenityHotel.bean.rent.CarModelImage;
+import com.cloudSerenityHotel.controller.rent.utils.ImageShow;
 import com.cloudSerenityHotel.dao.rent.impl.CarModelImpl;
 
 import jakarta.servlet.ServletException;
@@ -18,6 +21,7 @@ public class DeleteCarModel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	CarModelImpl model = new CarModelImpl();
+	ImageShow imageShow = new ImageShow();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -25,7 +29,18 @@ public class DeleteCarModel extends HttpServlet {
 		int carId = Integer.parseInt(request.getParameter("carId"));
 		model.deleteModelById(carId);
 		List<CarModelBean> cars = model.getAllCarModel();
-		request.setAttribute("cars", cars);
+		List<CarModelImage> cars2 = new ArrayList<CarModelImage>();
+		for (CarModelBean carModelBean : cars) {
+			CarModelImage carModelBean2 = new CarModelImage();
+			carModelBean2.setCarId(carModelBean.getCarId());
+			carModelBean2.setCarModel(carModelBean.getCarModel());
+			carModelBean2.setBrand(carModelBean.getBrand());
+			carModelBean2.setImage(imageShow.showImageOne(carModelBean.getCarId()));
+			cars2.add(carModelBean2);
+		}
+
+
+		request.setAttribute("cars", cars2);
 		request.getRequestDispatcher("/static/rent/jsp/getCarModelAll.jsp").forward(request, response);
 	}
 

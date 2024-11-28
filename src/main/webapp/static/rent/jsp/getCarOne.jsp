@@ -56,12 +56,13 @@
 
 	<article>
 
-		<div class="image-container">
-				<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-				<c:forEach var="image" items="${images}">
-					<img src="data:image/png;base64,${image}" alt="描述圖片" class="image">
-				</c:forEach>
-		</div>
+		  <div class="image-container">
+			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+			<c:forEach var="image" items="${images}">
+				<img src="data:image/png;base64,${image}" alt="描述圖片" class="image">
+			</c:forEach> 
+
+	</div>
 		<h3>${carModel}</h3>
 
 		<div class="car-description">

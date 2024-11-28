@@ -104,7 +104,7 @@
 				</div>
 
 
-				<button type="submit">提交表單</button>
+				<button type="submit">刪除</button>
 
 			</div>
 

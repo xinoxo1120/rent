@@ -166,9 +166,10 @@ article h3 {
 }
 
 .image-container img {
-    width: 100%;  /* 使圖片寬度自動擴展，適應容器寬度 */
-    height: 100%;  /* 使圖片高度自動擴展，適應容器高度 */
-    object-fit: contain;  /* 確保圖片保持比例並完全顯示 */
+    width: 100% !important;  /* 使圖片寬度自動擴展，適應容器寬度 */
+    height: 100% !important;  /* 使圖片高度自動擴展，適應容器高度 */
+    object-fit: contain !important;  /* 確保圖片保持比例並完全顯示 */
+
 }
 
 @media (max-width: 768px) {
@@ -334,3 +335,4 @@ article h3 {
     color: #555;
     margin-bottom: 15px;
 }
+

@@ -32,7 +32,7 @@ public class GoDeleteById extends HttpServlet {
 		request.setAttribute("availableVehicles", car.getAvailableVehicles());
 		request.setAttribute("carType", car.getCarType());
 		request.setAttribute("carSize", car.getCarSize());
-		request.getRequestDispatcher("/static/rent/jsp/getCarModelAll.jsp").forward(request, response);
+		request.getRequestDispatcher("/static/rent/jsp/goDeleteById.jsp").forward(request, response);
 
 	}
 

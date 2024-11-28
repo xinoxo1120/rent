@@ -5,9 +5,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
 
 import com.cloudSerenityHotel.bean.rent.ImagesBean;
+import com.cloudSerenityHotel.controller.rent.utils.ImageShow;
+import com.cloudSerenityHotel.dao.rent.impl.CarModelImpl;
 import com.cloudSerenityHotel.dao.rent.impl.ImagesDao;
 
 import jakarta.servlet.ServletException;
@@ -24,10 +27,13 @@ public class InsertImage extends HttpServlet {
 	private static final String SAVE_PATH = "C:\\Users\\user\\Desktop\\image\\";
 
 	ImagesDao images = new ImagesDao();
+	public static final String DATE_TIME_FORMATTER = "yyyy-MM-dd hh:mm";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ImagesBean imagesBean = new ImagesBean();
+		CarModelImpl model = new CarModelImpl();
+		ImageShow imageShow = new ImageShow();
 		int carId = Integer.parseInt(request.getParameter("carId"));
 
 		for (int i = 1; i <= 5; i++) {
@@ -60,7 +66,10 @@ public class InsertImage extends HttpServlet {
 		}
 
 
-		request.getRequestDispatcher("/static/rent/jsp/getCarOne.jsp").forward(request, response);
+		List<String> images = imageShow.showimageAll(carId);
+		request.setAttribute("images", images);
+
+		request.getRequestDispatcher("/rent/car-model/update").forward(request, response);
 
 	}
 

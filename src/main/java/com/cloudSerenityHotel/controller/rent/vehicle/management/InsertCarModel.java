@@ -5,10 +5,13 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cloudSerenityHotel.bean.rent.CarModelBean;
+import com.cloudSerenityHotel.bean.rent.CarModelImage;
 import com.cloudSerenityHotel.controller.rent.utils.BaseValidationUtil;
+import com.cloudSerenityHotel.controller.rent.utils.ImageShow;
 import com.cloudSerenityHotel.dao.rent.impl.CarModelImpl;
 
 import jakarta.servlet.ServletException;
@@ -23,6 +26,7 @@ public class InsertCarModel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	CarModelImpl model = new CarModelImpl();
+	ImageShow imageShow = new ImageShow();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -57,10 +61,18 @@ public class InsertCarModel extends HttpServlet {
 		car.setUpdatedAt(timestamp);
 
 		model.insertCarModel(car);
-
 		List<CarModelBean> cars = model.getAllCarModel();
+		List<CarModelImage> cars2 = new ArrayList<CarModelImage>();
+		for (CarModelBean carModelBean : cars) {
+			CarModelImage carModelBean2 = new CarModelImage();
+			carModelBean2.setCarId(carModelBean.getCarId());
+			carModelBean2.setCarModel(carModelBean.getCarModel());
+			carModelBean2.setBrand(carModelBean.getBrand());
+			carModelBean2.setImage(imageShow.showImageOne(carModelBean.getCarId()));
+			cars2.add(carModelBean2);
+		}
 
-		request.setAttribute("cars", cars);
+		request.setAttribute("cars", cars2);
 
 		request.getRequestDispatcher("/static/rent/jsp/getCarModelAll.jsp").forward(request, response);
 	}
