@@ -10,7 +10,6 @@ import java.util.UUID;
 
 import com.cloudSerenityHotel.bean.rent.ImagesBean;
 import com.cloudSerenityHotel.controller.rent.utils.ImageShow;
-import com.cloudSerenityHotel.dao.rent.impl.CarModelImpl;
 import com.cloudSerenityHotel.dao.rent.impl.ImagesDao;
 
 import jakarta.servlet.ServletException;
@@ -32,7 +31,6 @@ public class InsertImage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ImagesBean imagesBean = new ImagesBean();
-		CarModelImpl model = new CarModelImpl();
 		ImageShow imageShow = new ImageShow();
 		int carId = Integer.parseInt(request.getParameter("carId"));
 

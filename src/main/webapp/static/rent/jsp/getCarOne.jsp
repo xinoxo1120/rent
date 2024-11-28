@@ -56,13 +56,14 @@
 
 	<article>
 
-		  <div class="image-container">
-			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+		<div class="image-container">
+			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 			<c:forEach var="image" items="${images}">
-				<img src="data:image/png;base64,${image}" alt="描述圖片" class="image">
-			</c:forEach> 
+				<li><img src="data:image/png;base64,${image}" alt="描述圖片"
+					class="image"></li>
+			</c:forEach>
 
-	</div>
+		</div>
 		<h3>${carModel}</h3>
 
 		<div class="car-description">
@@ -137,15 +138,21 @@
 			}
 			
 			
+			document.addEventListener("DOMContentLoaded", function() {
+			    var images = document.querySelectorAll('.image-container img');
+			    var firstImage = images[0];  // 第一張圖片
+			    var secondImage = images[1]; // 第二張圖片
+
+			    // 隱藏第二張圖片，只顯示第一張
+			    secondImage.style.display = 'none'; // 隱藏第二張圖片
+
+			    // 這裡可以根據需要切換顯示不同的圖片
+			    // 比如：切換到第二張圖片
+			    // firstImage.style.display = 'none'; 
+			    // secondImage.style.display = 'block';
+			});
 	</script>
-	<script src="../jquery.cycle.all.js" type="text/javascript"></script>
-	<script type="text/javascript">
-			    $(document).ready(function () { 
-			         $('#slideshow').cycle({  
-			             fx: "scrollHorz" 
-			         }); 
-			    });
-			</script>
+
 
 
 </body>
