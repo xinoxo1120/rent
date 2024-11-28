@@ -26,6 +26,33 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 	rel="stylesheet">
 
+<!-- owl.carousel -->
+<link rel="stylesheet" href="owl.carousel.min.css">
+<link rel="stylesheet" href="owl.theme.default.min.css">
+<script src="jquery.min.js"></script>
+<script src="owl.carousel.js"></script>
+
+<!-- owl.carousel -->
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"></link>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"></link>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<link rel="stylesheet" href="js/owl.carousel/owl.carousel.css">
+<script src="js/owl.carousel/owl.carousel.js"></script>
+<script src="js/owl.carousel/theme.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"></link>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"></link>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+<!-- owl.carousel 尾 -->
 
 <link rel="stylesheet"
 	href="/CloudSerenityHotel/static/rent/css/getCarOne.css">
@@ -57,12 +84,13 @@
 	<article>
 
 		<div class="image-container">
-			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-			<c:forEach var="image" items="${images}">
-				<li><img src="data:image/png;base64,${image}" alt="描述圖片"
-					class="image"></li>
-			</c:forEach>
-
+			<div class="owl-carousel owl-theme">
+				<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+				<c:forEach var="image" items="${images}">
+					<li class="items"><img src="data:image/png;base64,${image}"
+						alt="描述圖片" class="image"></li>
+				</c:forEach>
+			</div>
 		</div>
 		<h3>${carModel}</h3>
 
@@ -72,12 +100,6 @@
 
 		</div>
 
-		<!--		<div class="button-container">
-		<i class="fa-solid fa-image image-btn" onclick="images(${carId})"></i>
-			<i class="fa-solid fa-pen-to-square edit-btn"
-				onclick="updateById(${carId})"></i> <i
-				class="fa-solid fa-trash delete-btn" onclick="deleteById(${carId})"></i>
-		</div>-->
 
 		<div class="button-container">
 			<i class="fa-solid fa-image image-btn" onclick="imagsAll(${carId})"></i>
@@ -137,23 +159,30 @@
 				 window.location.href = "/CloudSerenityHotel/rent/car-model/images-all?carId=" + carId;
 			}
 			
-			
-			document.addEventListener("DOMContentLoaded", function() {
-			    var images = document.querySelectorAll('.image-container img');
-			    var firstImage = images[0];  // 第一張圖片
-			    var secondImage = images[1]; // 第二張圖片
-
-			    // 隱藏第二張圖片，只顯示第一張
-			    secondImage.style.display = 'none'; // 隱藏第二張圖片
-
-			    // 這裡可以根據需要切換顯示不同的圖片
-			    // 比如：切換到第二張圖片
-			    // firstImage.style.display = 'none'; 
-			    // secondImage.style.display = 'block';
-			});
 	</script>
 
-
+	<script>
+	  $(".owl-carousel").owlCarousel({
+	        items: 1,  // 每次顯示一張圖片
+	        //loop: true,  // 開啟循環播放
+	        margin: 10,  // 圖片之間的間隔
+	        responsive: {
+	            0: {
+	                items: 1  // 在小螢幕上顯示1張圖片
+	            },
+	            600: {
+	                items: 1  // 在中等螢幕上顯示1張圖片
+	            },
+	            1000: {
+	                items: 1  // 在大螢幕上顯示1張圖片
+	            }
+	        },
+	        autoWidth: false, // 關閉自動寬度調整
+	        onInitialized: function() {
+	            console.log('Owl Carousel initialized');
+	        }
+		});
+	</script>
 
 </body>
 

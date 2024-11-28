@@ -313,12 +313,21 @@ article h3 {
     top: 5%;
     left: 30%;
     display: flex;
-    justify-content: center;  /* 水平居中圖片 */
+    justify-content: flex-start;  /* 改為左對齊，這樣圖片會水平排列 */
     align-items: center;     /* 垂直居中圖片 */
     overflow: hidden;
     border: none;
     padding: 0;               /* 移除容器的內邊距 */
     margin: 0;                /* 移除容器的外邊距 */
+}
+
+.owl-carousel {
+    display: flex;               /* 設置為水平排列 */
+    justify-content: flex-start;  /* 左對齊圖片 */
+    align-items: center;          /* 垂直居中 */
+    flex-wrap: nowrap;            /* 確保圖片不會換行 */
+    width: 100%;                  /* 使橫向滾動條容納整個容器寬度 */
+    overflow-x: scroll;           /* 確保超過寬度的內容可以水平滾動 */
 }
 
 
@@ -327,26 +336,58 @@ article h3 {
     margin: 0;               /* 移除 li 元素的外邊距 */
     padding: 0;              /* 移除 li 元素的內邊距 */
     list-style: none;        /* 移除 li 預設的項目符號 */
+    
 }
 
+.slide-imgs{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: absolute;
+	display:flex;
+}
+
+
 .image-container li img {
-    width: 100%;             /* 使圖片寬度自動擴展，適應容器寬度 */
-    height: 100%;            /* 使圖片高度自動擴展，適應容器高度 */
+    width: 580px;           /* 設置容器寬度 */
+    height: 380px;      /* 使圖片高度自動擴展，適應容器高度 */
     object-fit: contain !important;  /* 確保圖片保持比例並完全顯示 */
     margin: 0;               /* 移除圖片的外邊距 */
     padding: 0;              /* 移除圖片的內邊距 */
+    
 }
+
 
 
 @media (max-width: 768px) {
     .image-container {
-        width: 90%;           /* 容器寬度為 90% */
-        height: 250px;        /* 容器高度為 250px */
+        width: 580px;           /* 設置容器寬度 */
+    	height: 380px; 
         top: 10%;             /* 上方位置偏移 */
         left: 5%;             /* 左側位置偏移 */
         padding: 0;           /* 移除容器的內邊距 */
     }
 }
+
+.owl-carousel .item {
+   width: 100%;             /* 使圖片寬度自動擴展，適應容器寬度 */
+    height: auto;            /* 使圖片高度自動擴展，適應容器高度 */
+    display: flex;
+    justify-content: center;  /* 水平居中圖片 */
+    align-items: center;      /* 垂直居中圖片 */
+    padding: 0;               /* 移除內邊距 */
+    margin: 0;                /* 移除外邊距 */
+    
+}
+
+.owl-carousel .owl-item {
+    margin-left: -350px;  /* 向右推移每個圖片 */
+ 
+}
+
+
+
+
 
 
 
